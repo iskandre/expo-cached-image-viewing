@@ -17,6 +17,7 @@ import {
   NativeSyntheticEvent,
   NativeMethodsMixin,
 } from "react-native";
+import { IMAGE_CACHE_FOLDER } from "../../consts";
 
 import useImageDimensions from "../../hooks/useImageDimensions";
 import usePanResponder from "../../hooks/usePanResponder";

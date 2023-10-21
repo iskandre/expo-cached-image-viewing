@@ -7,6 +7,7 @@
  */
 
 import React, { useCallback, useRef, useState } from "react";
+import { ImageURISource, ImageRequireSource } from "react-native";
 
 import {
   Animated,
@@ -26,6 +27,7 @@ import useImageDimensions from "../../hooks/useImageDimensions";
 import { getImageStyles, getImageTransform } from "../../utils";
 import { ImageSource } from "../../@types";
 import { ImageLoading } from "./ImageLoading";
+import CachedImage from "./CachedImage";
 
 const SWIPE_CLOSE_OFFSET = 75;
 const SWIPE_CLOSE_VELOCITY = 1.55;
@@ -136,8 +138,11 @@ const ImageItem = ({
           onLongPress={onLongPressHandler}
           delayLongPress={delayLongPress}
         >
-          <Animated.Image
-            source={imageSrc}
+          <CachedImage
+            //source={imageSrc}
+            //source={typeof imageSrc === "ImageURISource"? imageSrc.uri:imageSrc}
+            source={imageSrc.hasOwnProperty('uri') ? imageSrc : imageSrc}
+            cacheKey={(imageSrc.uri as string).split('/').pop().split('/')[0].slice(6, 32)}
             style={imageStylesWithOpacity}
             onLoad={() => setLoaded(true)}
           />

@@ -41,6 +41,6 @@ export const city = [
     thumbnail:
       "https://images.unsplash.com/photo-1494523257926-2a9c37a63b9d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=581&q=80",
     original:
-      "https://images.unsplash.com/photo-1494523257926-2a9c37a63b9d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2962&q=80"
+      "https://images.unsplash.com/photo-1494523257926-2a9c37a63b9d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2962&q=200"
   }
 ];
