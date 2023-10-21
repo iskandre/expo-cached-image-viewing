@@ -47,7 +47,7 @@ export default function App() {
     images.map((image) =>
       typeof image.original === "number"
         ? image.original
-        : { uri: image.original as string }
+        : {source: { uri: image.original as string }, cacheKey:image.cacheKey?image.cacheKey:'none'}
     )
   );
   const onLongPress = (image) => {
