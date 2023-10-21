@@ -23,8 +23,9 @@ import useImageDimensions from "../../hooks/useImageDimensions";
 import usePanResponder from "../../hooks/usePanResponder";
 
 import { getImageStyles, getImageTransform } from "../../utils";
-import { ImageSource } from "../../@types";
+import { ImageSourceCached } from "../../@types";
 import { ImageLoading } from "./ImageLoading";
+import CachedImage from "./CachedImage";
 
 const SWIPE_CLOSE_OFFSET = 75;
 const SWIPE_CLOSE_VELOCITY = 1.75;
@@ -33,10 +34,10 @@ const SCREEN_WIDTH = SCREEN.width;
 const SCREEN_HEIGHT = SCREEN.height;
 
 type Props = {
-  imageSrc: ImageSource;
+  imageSrc: ImageSourceCached;
   onRequestClose: () => void;
   onZoom: (isZoomed: boolean) => void;
-  onLongPress: (image: ImageSource) => void;
+  onLongPress: (image: ImageSourceCached) => void;
   delayLongPress: number;
   swipeToCloseEnabled?: boolean;
   doubleTapToZoomEnabled?: boolean;
@@ -132,9 +133,11 @@ const ImageItem = ({
         onScrollEndDrag,
       })}
     >
-      <Animated.Image
+      <CachedImage
         {...panHandlers}
-        source={imageSrc}
+        //source={imageSrc}
+        source={imageSrc.source}
+        cacheKey={imageSrc.cacheKey}
         style={imageStylesWithOpacity}
         onLoad={onLoaded}
       />

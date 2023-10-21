@@ -34,6 +34,7 @@ const CachedImage: React.FC<CachedImageProps> = (props) => {
   )
 
   useEffect(() => {
+    setImgUri(uri)
     void loadImage()
     return () => {
       componentIsMounted.current = false
@@ -60,8 +61,7 @@ const CachedImage: React.FC<CachedImageProps> = (props) => {
           }
           // download to cache
           setImgUri(null)
-          console.log('downloading ' + uri)
-          console.log('downloading to file ' + fileURI)
+          //console.log('downloading to file ' + fileURI)
           const response = await downloadResumableRef.current.downloadAsync()
           if (componentIsMounted.current && response?.status === 200) {
             setImgUri(`${fileURI}?`) // deep clone to force re-render
@@ -70,8 +70,6 @@ const CachedImage: React.FC<CachedImageProps> = (props) => {
             FileSystem.deleteAsync(fileURI, { idempotent: true }) // delete file locally if it was not downloaded properly
           }
         }
-      } else {
-        console.log('exists in cache ' + fileURI)
       }
     } catch (err) {
       // console.log({ err })

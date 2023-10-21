@@ -25,7 +25,7 @@ import useDoubleTapToZoom from "../../hooks/useDoubleTapToZoom";
 import useImageDimensions from "../../hooks/useImageDimensions";
 
 import { getImageStyles, getImageTransform } from "../../utils";
-import { ImageSource } from "../../@types";
+import { ImageSourceCached } from "../../@types";
 import { ImageLoading } from "./ImageLoading";
 import CachedImage from "./CachedImage";
 
@@ -36,10 +36,10 @@ const SCREEN_WIDTH = SCREEN.width;
 const SCREEN_HEIGHT = SCREEN.height;
 
 type Props = {
-  imageSrc: ImageSource;
+  imageSrc: ImageSourceCached;
   onRequestClose: () => void;
   onZoom: (scaled: boolean) => void;
-  onLongPress: (image: ImageSource) => void;
+  onLongPress: (image: ImageSourceCached) => void;
   delayLongPress: number;
   swipeToCloseEnabled?: boolean;
   doubleTapToZoomEnabled?: boolean;
@@ -141,8 +141,9 @@ const ImageItem = ({
           <CachedImage
             //source={imageSrc}
             //source={typeof imageSrc === "ImageURISource"? imageSrc.uri:imageSrc}
-            source={imageSrc.hasOwnProperty('uri') ? imageSrc : imageSrc}
-            cacheKey={(imageSrc.uri as string).split('/').pop().split('/')[0].slice(6, 32)}
+            source={imageSrc.source}
+            //cacheKey={(imageSrc.uri as string).split('/').pop().split('/')[0].slice(6, 32)}
+            cacheKey={imageSrc.cacheKey}
             style={imageStylesWithOpacity}
             onLoad={() => setLoaded(true)}
           />

@@ -19,3 +19,8 @@ export type Position = {
 };
 
 export type ImageSource = ImageURISource | ImageRequireSource;
+
+export type ImageSourceCached = {
+  source: ImageURISource | ImageRequireSource,
+  cacheKey: string
+}

@@ -24,15 +24,15 @@ import StatusBarManager from "./components/StatusBarManager";
 import useAnimatedComponents from "./hooks/useAnimatedComponents";
 import useImageIndexChange from "./hooks/useImageIndexChange";
 import useRequestClose from "./hooks/useRequestClose";
-import { ImageSource } from "./@types";
+import { ImageSource, ImageSourceCached } from "./@types";
 
 type Props = {
-  images: ImageSource[];
-  keyExtractor?: (imageSrc: ImageSource, index: number) => string;
+  images: ImageSourceCached[];
+  keyExtractor?: (imageSrc: ImageSourceCached, index: number) => string;
   imageIndex: number;
   visible: boolean;
   onRequestClose: () => void;
-  onLongPress?: (image: ImageSource) => void;
+  onLongPress?: (image: ImageSourceCached) => void;
   onImageIndexChange?: (imageIndex: number) => void;
   presentationStyle?: ModalProps["presentationStyle"];
   animationType?: ModalProps["animationType"];
@@ -67,7 +67,7 @@ function ImageViewing({
   HeaderComponent,
   FooterComponent,
 }: Props) {
-  const imageList = useRef<VirtualizedList<ImageSource>>(null);
+  const imageList = useRef<VirtualizedList<ImageSourceCached>>(null);
   const [opacity, onRequestCloseEnhanced] = useRequestClose(onRequestClose);
   const [currentImageIndex, onScroll] = useImageIndexChange(imageIndex, SCREEN);
   const [headerTransform, footerTransform, toggleBarsVisible] =
@@ -149,7 +149,7 @@ function ImageViewing({
               ? keyExtractor(imageSrc, index)
               : typeof imageSrc === "number"
               ? `${imageSrc}`
-              : imageSrc.uri
+              : imageSrc.source.uri
           }
         />
         {typeof FooterComponent !== "undefined" && (

@@ -10,15 +10,15 @@ import { useEffect, useState } from "react";
 import { Image, ImageURISource } from "react-native";
 
 import { createCache } from "../utils";
-import { Dimensions, ImageSource } from "../@types";
+import { Dimensions, ImageSourceCached } from "../@types";
 
 const CACHE_SIZE = 50;
 const imageDimensionsCache = createCache(CACHE_SIZE);
 
-const useImageDimensions = (image: ImageSource): Dimensions | null => {
+const useImageDimensions = (image: ImageSourceCached): Dimensions | null => {
   const [dimensions, setDimensions] = useState<Dimensions | null>(null);
 
-  const getImageDimensions = (image: ImageSource): Promise<Dimensions> => {
+  const getImageDimensions = (image: ImageSourceCached): Promise<Dimensions> => {
     return new Promise((resolve) => {
       if (typeof image == "number") {
         const cacheKey = `${image}`;
@@ -36,8 +36,8 @@ const useImageDimensions = (image: ImageSource): Dimensions | null => {
       }
 
       // @ts-ignore
-      if (image.uri) {
-        const source = image as ImageURISource;
+      if (image.source.uri) {
+        const source = image.source as ImageURISource;
 
         const cacheKey = source.uri as string;
 
