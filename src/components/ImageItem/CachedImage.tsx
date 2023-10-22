@@ -34,7 +34,6 @@ const CachedImage: React.FC<CachedImageProps> = (props) => {
   )
 
   useEffect(() => {
-    setImgUri(uri)
     void loadImage()
     return () => {
       componentIsMounted.current = false
@@ -48,10 +47,6 @@ const CachedImage: React.FC<CachedImageProps> = (props) => {
       const expired =
           Boolean(metadata.exists && expiresIn &&
               new Date().getTime() / 1000 - metadata.modificationTime > expiresIn)
-      // console.log({expiresIn, expired})
-
-      // console.log({modificationTime: metadata.modificationTime, currentTime: new Date().getTime() / 1000})
-      // console.log({metadata})
       if (!metadata.exists || metadata?.size === 0 || expired) {
         if (componentIsMounted.current) {
           setImgUri(null)
@@ -61,7 +56,6 @@ const CachedImage: React.FC<CachedImageProps> = (props) => {
           }
           // download to cache
           setImgUri(null)
-          //console.log('downloading to file ' + fileURI)
           const response = await downloadResumableRef.current.downloadAsync()
           if (componentIsMounted.current && response?.status === 200) {
             setImgUri(`${fileURI}?`) // deep clone to force re-render
@@ -72,7 +66,6 @@ const CachedImage: React.FC<CachedImageProps> = (props) => {
         }
       }
     } catch (err) {
-      // console.log({ err })
       setImgUri(uri)
     }
   }
