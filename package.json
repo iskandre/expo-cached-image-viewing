@@ -1,6 +1,6 @@
 {
   "name": "expo-cached-image-viewing",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "React Native modal component for viewing images as a sliding gallery with caching (iOS + Android)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -42,8 +42,5 @@
     "react": "^18.2.0",
     "react-native": "^0.72.3",
     "typescript": "3.7.2"
-  },
-  "dependencies": {
-    "expo-cached-image": "^48.1.0"
   }
 }
