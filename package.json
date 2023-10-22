@@ -1,12 +1,12 @@
 {
-  "name": "react-native-image-viewing",
+  "name": "expo-cached-image-viewing",
   "version": "0.2.2",
-  "description": "React Native modal component for viewing images as a sliding gallery",
+  "description": "React Native modal component for viewing images as a sliding gallery with caching (iOS + Android)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jobtoday/react-native-image-viewing.git"
+    "url": "git+https://github.com/iskandre/expo-cached-image-viewing.git"
   },
   "keywords": [
     "react",
