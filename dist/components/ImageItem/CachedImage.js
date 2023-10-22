@@ -17,7 +17,6 @@ const CachedImage = (props) => {
     };
     const downloadResumableRef = useRef(FileSystem.createDownloadResumable(uri, fileURI, requestOption, _callback));
     useEffect(() => {
-        setImgUri(uri);
         void loadImage();
         return () => {
             componentIsMounted.current = false;
@@ -30,9 +29,6 @@ const CachedImage = (props) => {
             const metadata = await FileSystem.getInfoAsync(fileURI);
             const expired = Boolean(metadata.exists && expiresIn &&
                 new Date().getTime() / 1000 - metadata.modificationTime > expiresIn);
-            // console.log({expiresIn, expired})
-            // console.log({modificationTime: metadata.modificationTime, currentTime: new Date().getTime() / 1000})
-            // console.log({metadata})
             if (!metadata.exists || ((_a = metadata) === null || _a === void 0 ? void 0 : _a.size) === 0 || expired) {
                 if (componentIsMounted.current) {
                     setImgUri(null);
@@ -41,7 +37,6 @@ const CachedImage = (props) => {
                     }
                     // download to cache
                     setImgUri(null);
-                    //console.log('downloading to file ' + fileURI)
                     const response = await downloadResumableRef.current.downloadAsync();
                     if (componentIsMounted.current && ((_b = response) === null || _b === void 0 ? void 0 : _b.status) === 200) {
                         setImgUri(`${fileURI}?`); // deep clone to force re-render
@@ -53,7 +48,6 @@ const CachedImage = (props) => {
             }
         }
         catch (err) {
-            // console.log({ err })
             setImgUri(uri);
         }
     };
