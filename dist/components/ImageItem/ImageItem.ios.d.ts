@@ -5,16 +5,17 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import React from "react";
-import { ImageSourceCached } from "../../@types";
-declare type Props = {
-    imageSrc: ImageSourceCached;
-    onRequestClose: () => void;
-    onZoom: (scaled: boolean) => void;
-    onLongPress: (image: ImageSourceCached) => void;
-    delayLongPress: number;
-    swipeToCloseEnabled?: boolean;
-    doubleTapToZoomEnabled?: boolean;
-};
-declare const _default: React.MemoExoticComponent<({ imageSrc, onZoom, onRequestClose, onLongPress, delayLongPress, swipeToCloseEnabled, doubleTapToZoomEnabled, }: Props) => JSX.Element>;
-export default _default;
+ import React from "react";
+ import { ImageSourceCached } from "../../@types";
+ declare type Props = {
+     imageSrc: ImageSourceCached;
+     onRequestClose: () => void;
+     onZoom: (scaled: boolean) => void;
+     onLongPress: (image: ImageSourceCached) => void;
+     delayLongPress: number;
+     swipeToCloseEnabled?: boolean;
+     doubleTapToZoomEnabled?: boolean;
+ };
+ declare const _default: React.MemoExoticComponent<({ imageSrc, onZoom, onRequestClose, onLongPress, delayLongPress, swipeToCloseEnabled, doubleTapToZoomEnabled, }: Props) => JSX.Element>;
+ export default _default;
+ 
